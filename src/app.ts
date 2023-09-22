@@ -4,17 +4,21 @@ import "reflect-metadata"; // Essa linha de código importa o pacote "reflect-me
 import "express-async-errors"; // Essa linha de código importa o pacote "express-async-errors". Esse pacote é usado em conjunto com o framework Express e é responsável por tratar automaticamente erros assíncronos dentro do Express. Ele substitui a necessidade de usar um bloco try-catch em cada rota ou middleware assíncrono, simplificando o tratamento de erros em operações assíncronas no Express. Ao importar esse pacote, você pode usar funções assíncronas diretamente nas suas rotas e middlewares, sem se preocupar com o tratamento manual de erros.
 import express, { Application } from "express";
 import { handleErrorMiddleware } from "./middlewares";
-/*
+
 import { userRoutes } from "./routes/user.routes";
+import { listeningRoutes } from "./routes/listening.routes";
 import { loginRoutes } from "./routes/login.routes";
- */
+import { pronunciationRoutes } from "./routes/pronunciation.routes";
+
 const app: Application = express();
 
 app.use(cors());
 app.use(express.json());
-/* 
+
 app.use("/user", userRoutes);
-app.use("/login", loginRoutes);*/
+app.use("/listening", listeningRoutes);
+app.use("/pronunciation", pronunciationRoutes);
+app.use("/login", loginRoutes);
 
 app.use(handleErrorMiddleware);
 
