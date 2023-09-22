@@ -38,3 +38,11 @@ async function deleteUserController(req: Request, res: Response) {
 
   return res.status(204).send();
 }
+
+export {
+  listUserController,
+  findUserController,
+  createUserController,
+  updateUserController,
+  deleteUserController,
+};
