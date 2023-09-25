@@ -16,6 +16,9 @@ export class User {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @Column({ nullable: true, type: "varchar" })
+  photo: string | null;
+
   @Column()
   username: string;
 
