@@ -3,9 +3,12 @@ import { z } from "zod";
 const pronunciationSchema = z.object({
   id: z.string(),
   title: z.string(),
-  model: z.string(),
+  description: z.string(),
+  start: z.number().nullable(),
+  end: z.number().nullable(),
   text: z.string(),
-  audio: z.string(),
+  help: z.string().nullable(),
+  url: z.string(),
 });
 
 const pronunciationSchemaRequest = pronunciationSchema.omit({

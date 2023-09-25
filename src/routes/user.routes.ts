@@ -6,17 +6,29 @@ import {
   listUserController,
   updateUserController,
 } from "../controllers/user.controller";
+import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
+import { userSchemaReq, userSchemaUpdate } from "../schemas/user.schema";
+import { ensureAuthMiddleware } from "../middlewares";
 
 const userRoutes = Router();
 
-userRoutes.post("", createUserController);
+userRoutes.post(
+  "",
+  ensureDataIsValidMiddleware(userSchemaReq),
+  createUserController
+);
 
 userRoutes.get("", listUserController);
 
 userRoutes.get("/:id", findUserController);
 
-userRoutes.patch("/:id", updateUserController);
+userRoutes.patch(
+  "/:id",
+  ensureAuthMiddleware,
+  ensureDataIsValidMiddleware(userSchemaUpdate),
+  updateUserController
+);
 
-userRoutes.delete("/:id", deleteUserController);
+userRoutes.delete("/:id", ensureAuthMiddleware, deleteUserController);
 
 export { userRoutes };

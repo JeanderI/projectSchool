@@ -2,10 +2,12 @@ import { z } from "zod";
 
 const userSchema = z.object({
   id: z.string(),
+  photo: z.string().nullable(),
   username: z.string(),
   email: z.string().email(),
-  password: z.string(),
+  password: z.string().min(8),
 });
+const userSchemaReq = userSchema.omit({ id: true });
 
 const userSchemaRes = userSchema.omit({
   password: true,
@@ -19,4 +21,10 @@ const userSchemaUpdate = userSchema
 
 const usersSchemaRes = z.array(userSchemaRes);
 
-export { userSchemaRes, userSchemaUpdate, usersSchemaRes, userSchema };
+export {
+  userSchemaRes,
+  userSchemaUpdate,
+  usersSchemaRes,
+  userSchema,
+  userSchemaReq,
+};

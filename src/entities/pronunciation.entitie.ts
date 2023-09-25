@@ -10,13 +10,22 @@ export class Pronunciation {
   title: string;
 
   @Column()
-  model: string;
+  description: string;
+
+  @Column({ nullable: true, type: "integer" })
+  start: number | null;
+
+  @Column({ nullable: true, type: "integer" })
+  end: number | null;
 
   @Column()
   text: string;
 
+  @Column({ nullable: true, type: "varchar" })
+  help: string | null;
+
   @Column()
-  audio: string;
+  url: string;
 
   @ManyToOne(() => User, (user) => user.pronunciation, { onDelete: "CASCADE" })
   user: User;

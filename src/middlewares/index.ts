@@ -1,3 +1,4 @@
+import { ensureAuthMiddleware } from "./ensureAuth.middleware";
 import { handleErrorMiddleware } from "./handleError.middleware";
 
-export { handleErrorMiddleware };
+export { handleErrorMiddleware, ensureAuthMiddleware };
