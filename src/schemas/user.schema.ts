@@ -7,11 +7,12 @@ const userSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
 });
-const userSchemaReq = userSchema.omit({ id: true });
 
 const userSchemaRes = userSchema.omit({
   password: true,
 });
+
+const userSchemaReq = userSchema.omit({ id: true });
 
 const userSchemaUpdate = userSchema
   .omit({
