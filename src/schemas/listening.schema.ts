@@ -20,8 +20,8 @@ const listeningSchemaUpdate = listeningSchemaRequest.partial();
 const listeningsSchemaResponse = z.array(listeningSchemaRequest);
 
 export {
-  listeningSchemaRequest,
   listeningSchema,
+  listeningSchemaRequest,
   listeningSchemaUpdate,
   listeningsSchemaResponse,
 };
