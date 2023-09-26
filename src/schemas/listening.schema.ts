@@ -15,10 +15,9 @@ const listeningSchemaRequest = listeningSchema.omit({
   id: true,
 });
 
-const listeningSchemaUpdate = listeningSchemaRequest.partial();
-
 const listeningsSchemaResponse = z.array(listeningSchemaRequest);
 
+const listeningSchemaUpdate = listeningSchemaRequest.partial();
 export {
   listeningSchema,
   listeningSchemaRequest,
