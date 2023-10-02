@@ -18,7 +18,6 @@ const pronunciationRoutes = Router();
 
 pronunciationRoutes.post(
   "",
-  ensureAuthMiddleware,
   ensureDataIsValidMiddleware(pronunciationSchemaRequest),
   createPronunciationController
 );
@@ -30,7 +29,6 @@ pronunciationRoutes.get("/:id", findPronunciationController);
 
 pronunciationRoutes.patch(
   "/:id",
-  ensureAuthMiddleware,
   ensureDataIsValidMiddleware(pronunciationSchemaUpdate),
   updatePronunciationController
 );

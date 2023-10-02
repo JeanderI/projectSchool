@@ -18,7 +18,6 @@ const listeningRoutes = Router();
 
 listeningRoutes.post(
   "",
-  ensureAuthMiddleware,
   ensureDataIsValidMiddleware(listeningSchemaRequest),
   createListeningController
 );
@@ -31,11 +30,10 @@ listeningRoutes.get("/:id", findListeningController);
 
 listeningRoutes.patch(
   "/:id",
-  ensureAuthMiddleware,
   ensureDataIsValidMiddleware(listeningSchemaUpdate),
   updateListeningController
 );
 
-listeningRoutes.delete("/:id", ensureAuthMiddleware, deleteListeningController);
+listeningRoutes.delete("/:id", deleteListeningController);
 
 export { listeningRoutes };
