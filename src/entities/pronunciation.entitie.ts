@@ -12,11 +12,11 @@ export class Pronunciation {
   @Column()
   description: string;
 
-  @Column({ nullable: true, type: "integer" })
-  start: number | null;
+  @Column({ nullable: true, type: "varchar" })
+  start: string | null;
 
-  @Column({ nullable: true, type: "integer" })
-  end: number | null;
+  @Column({ nullable: true, type: "varchar" })
+  end: string | null;
 
   @Column()
   text: string;
