@@ -7,14 +7,14 @@ import "dotenv/config";
 import { User } from "../../entities/user.entitie";
 
 const createTokenService = async ({
-  email,
+  username,
   password,
 }: TLoginRequest): Promise<string> => {
   const userRepository = AppDataSource.getRepository(User);
 
   const user = await userRepository.findOne({
     where: {
-      email,
+      username,
     },
   });
 
