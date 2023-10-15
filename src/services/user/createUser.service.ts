@@ -8,11 +8,11 @@ import { TUserReq, TUserRes } from "../../interfaces/user.interface";
 const createUserService = async (data: TUserReq): Promise<TUserRes> => {
   const userRepository = AppDataSource.getRepository(User);
 
-  const { email } = data;
+  const { username } = data;
 
   const findUser = await userRepository.findOne({
     where: {
-      email,
+      username,
     },
   });
 

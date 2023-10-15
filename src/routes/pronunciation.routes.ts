@@ -23,16 +23,19 @@ pronunciationRoutes.post(
 );
 pronunciationRoutes.get("/all", allPronunciationController);
 
-pronunciationRoutes.get("", listPronunciationsController);
-
 pronunciationRoutes.get("/:id", findPronunciationController);
 
 pronunciationRoutes.patch(
   "/:id",
+  ensureAuthMiddleware,
   ensureDataIsValidMiddleware(pronunciationSchemaUpdate),
   updatePronunciationController
 );
 
-pronunciationRoutes.delete("/:id", deletePronunciationController);
+pronunciationRoutes.delete(
+  "/:id",
+  ensureAuthMiddleware,
+  deletePronunciationController
+);
 
 export { pronunciationRoutes };
