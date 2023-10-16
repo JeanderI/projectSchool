@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { listListeningsService } from "../services/listening/listListening.service";
+
 import { createListeningService } from "../services/listening/createListening.service";
 import { updateListeningService } from "../services/listening/updateListening.service";
 import { deleteListeningService } from "../services/listening/deleteListening.service";
@@ -12,15 +12,6 @@ const createListeningController = async (req: Request, res: Response) => {
   const newListening = await createListeningService(req.body, userId);
 
   return res.status(201).json(newListening);
-};
-
-const listListeningsController = async (req: Request, res: Response) => {
-  const page = parseInt(req.query.page as string) || 1;
-  const limit = parseInt(req.query.limit as string) || 1;
-  const baseUrl = req.get("host") as string;
-  const listenings = await listListeningsService(page, limit, baseUrl);
-
-  return res.status(200).json(listenings);
 };
 
 const findListeningController = async (req: Request, res: Response) => {
@@ -54,7 +45,6 @@ const deleteListeningController = async (req: Request, res: Response) => {
 export {
   createListeningController,
   allListeningController,
-  listListeningsController,
   updateListeningController,
   deleteListeningController,
   findListeningController,

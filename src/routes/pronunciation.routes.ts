@@ -4,7 +4,6 @@ import {
   createPronunciationController,
   deletePronunciationController,
   findPronunciationController,
-  listPronunciationsController,
   updatePronunciationController,
 } from "../controllers/pronunciation.controller";
 import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
