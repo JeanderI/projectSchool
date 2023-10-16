@@ -12,20 +12,10 @@ type TPronunciationResponse = z.infer<typeof pronunciationSchema>;
 type TPronunciationsResponse = z.infer<typeof pronunciationsSchemaResponse>;
 type TPronunciationUpdateRequest = DeepPartial<TPronunciationRequest>;
 
-interface IPagination {
-  next: string | null;
-  previous: string | null;
-  currentPage: number;
-  totalPages: number;
-  totalCount: number;
-  results: TPronunciationsResponse;
-}
-
 export {
   TPronunciation,
   TPronunciationRequest,
   TPronunciationResponse,
   TPronunciationUpdateRequest,
   TPronunciationsResponse,
-  IPagination,
 };
