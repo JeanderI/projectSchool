@@ -11,7 +11,7 @@ import {
   pronunciationSchemaRequest,
   pronunciationSchemaUpdate,
 } from "../schemas/pronunciation.schema";
-import { ensureAuthMiddleware } from "../middlewares";
+import { ensureAuthMiddleware } from "../middlewares/ensureAuth.middleware";
 
 const pronunciationRoutes = Router();
 

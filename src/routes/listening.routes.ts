@@ -11,7 +11,7 @@ import {
   listeningSchemaRequest,
   listeningSchemaUpdate,
 } from "../schemas/listening.schema";
-import { ensureAuthMiddleware } from "middlewares";
+import { ensureAuthMiddleware } from "../middlewares/ensureAuth.middleware";
 
 const listeningRoutes = Router();
 
