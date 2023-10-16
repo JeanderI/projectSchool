@@ -4,7 +4,6 @@ import {
   createListeningController,
   deleteListeningController,
   findListeningController,
-  listListeningsController,
   updateListeningController,
 } from "../controllers/listening.controller";
 import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
