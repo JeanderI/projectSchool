@@ -4,7 +4,7 @@ import { updatePronunciationService } from "../services/pronunciation/updateList
 import { deletePronunciationService } from "../services/pronunciation/deleteListening.service";
 
 import { findPronunciationService } from "../services/pronunciation/getListeningById.service";
-import { allPronunciationService } from "../services/pronunciation/listAll.service";
+import { userPronunciationService } from "../services/pronunciation/listAll.service";
 
 const createPronunciationController = async (req: Request, res: Response) => {
   const userId = res.locals.userId;
@@ -14,8 +14,9 @@ const createPronunciationController = async (req: Request, res: Response) => {
   return res.status(201).json(newPronunciation);
 };
 
-const allPronunciationController = async (req: Request, res: Response) => {
-  const pronunciation = await allPronunciationService();
+const userPronunciationController = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+  const pronunciation = await userPronunciationService(userId);
 
   return res.json(pronunciation);
 };
@@ -50,5 +51,5 @@ export {
   updatePronunciationController,
   deletePronunciationController,
   findPronunciationController,
-  allPronunciationController,
+  userPronunciationController,
 };

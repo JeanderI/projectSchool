@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  allPronunciationController,
+  userPronunciationController,
   createPronunciationController,
   deletePronunciationController,
   findPronunciationController,
@@ -20,7 +20,7 @@ pronunciationRoutes.post(
   ensureDataIsValidMiddleware(pronunciationSchemaRequest),
   createPronunciationController
 );
-pronunciationRoutes.get("/all", allPronunciationController);
+pronunciationRoutes.get("/user/:id", userPronunciationController);
 
 pronunciationRoutes.get("/:id", findPronunciationController);
 

@@ -4,7 +4,7 @@ import { createListeningService } from "../services/listening/createListening.se
 import { updateListeningService } from "../services/listening/updateListening.service";
 import { deleteListeningService } from "../services/listening/deleteListening.service";
 import { findListeningService } from "../services/listening/getListeningById.service";
-import { allListeningService } from "../services/listening/listAll.service";
+import { userListeningService } from "../services/listening/listAll.service";
 
 const createListeningController = async (req: Request, res: Response) => {
   const userId = res.locals.userId;
@@ -21,8 +21,9 @@ const findListeningController = async (req: Request, res: Response) => {
   return res.json(listening);
 };
 
-const allListeningController = async (req: Request, res: Response) => {
-  const listening = await allListeningService();
+const userListeningController = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+  const listening = await userListeningService(userId);
 
   return res.json(listening);
 };
@@ -44,7 +45,7 @@ const deleteListeningController = async (req: Request, res: Response) => {
 
 export {
   createListeningController,
-  allListeningController,
+  userListeningController,
   updateListeningController,
   deleteListeningController,
   findListeningController,

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  allListeningController,
+  userListeningController,
   createListeningController,
   deleteListeningController,
   findListeningController,
@@ -21,7 +21,7 @@ listeningRoutes.post(
   createListeningController
 );
 
-listeningRoutes.get("/all", allListeningController);
+listeningRoutes.get("/user/:id", userListeningController);
 
 listeningRoutes.get("/:id", findListeningController);
 
