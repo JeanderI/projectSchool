@@ -17,6 +17,7 @@ const pronunciationRoutes = Router();
 
 pronunciationRoutes.post(
   "",
+  ensureAuthMiddleware,
   ensureDataIsValidMiddleware(pronunciationSchemaRequest),
   createPronunciationController
 );

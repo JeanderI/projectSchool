@@ -16,25 +16,24 @@ const createListeningService = async (
   const listeningsRepository: Repository<Listening> =
     AppDataSource.getRepository(Listening);
   const usersRepository: Repository<User> = AppDataSource.getRepository(User);
-
-  const user: User | null = await usersRepository.findOne({
-    where: {
-      id: userId,
-    },
+  console.log(userId);
+  // Verifique se o usuário com userId existe
+  const user: User | null = await usersRepository.findOneBy({
+    id: userId,
   });
 
   if (!user) {
     throw new AppError("User not found", 404);
   }
 
+  // Crie o item Listening associado a esse usuário
   const listening: Listening = listeningsRepository.create({
     ...data,
-    user,
+    user: user,
   });
 
   await listeningsRepository.save(listening);
 
   return listeningSchema.parse(listening);
 };
-
 export { createListeningService };
