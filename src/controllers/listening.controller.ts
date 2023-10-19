@@ -5,13 +5,40 @@ import { updateListeningService } from "../services/listening/updateListening.se
 import { deleteListeningService } from "../services/listening/deleteListening.service";
 import { findListeningService } from "../services/listening/getListeningById.service";
 import { userListeningService } from "../services/listening/listAll.service";
+import jwt from "jsonwebtoken";
 
 const createListeningController = async (req: Request, res: Response) => {
-  const userId = res.locals.userId;
+  const authToken = req.headers.authorization;
 
-  const newListening = await createListeningService(req.body, userId);
+  if (!authToken || !authToken.startsWith("Bearer ")) {
+    return res
+      .status(401)
+      .json({ message: "Authentication token not provided" });
+  }
 
-  return res.status(201).json(newListening);
+  const token = authToken.replace("Bearer ", "");
+
+  const secretKey = process.env.SECRET_KEY;
+
+  if (secretKey === undefined) {
+    return res.status(500).json({ message: "Secret key is not defined" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, secretKey);
+    const userId = typeof decoded.sub === "string" ? decoded.sub : "";
+
+    if (!userId) {
+      return res.status(401).json({ message: "Token is invalid" });
+    }
+
+    console.log(userId);
+    const newListening = await createListeningService(req.body, userId);
+
+    return res.status(201).json(newListening);
+  } catch (error) {
+    return res.status(401).json({ message: "Token is invalid" });
+  }
 };
 
 const findListeningController = async (req: Request, res: Response) => {
