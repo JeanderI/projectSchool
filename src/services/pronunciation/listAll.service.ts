@@ -2,13 +2,21 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Pronunciation } from "../../entities/pronunciation.entitie";
 
-const allPronunciationService = async (): Promise<Pronunciation[]> => {
+const userPronunciationService = async (
+  userId: string
+): Promise<Pronunciation[]> => {
   const pronunciationRepository: Repository<Pronunciation> =
     AppDataSource.getRepository(Pronunciation);
 
-  const pronunciation = await pronunciationRepository.find();
+  const pronunciation = await pronunciationRepository.find({
+    where: {
+      user: {
+        id: userId,
+      },
+    },
+  });
 
   return pronunciation;
 };
 
-export { allPronunciationService };
+export { userPronunciationService };
