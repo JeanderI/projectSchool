@@ -3,7 +3,10 @@ import { AppDataSource } from "../../data-source";
 import AppError from "../../errors/AppErrors";
 import { Pronunciation } from "../../entities/pronunciation.entitie";
 import { TPronunciationResponse } from "../../interfaces/pronunciation.interface";
-import { pronunciationSchema } from "../../schemas/pronunciation.schema";
+import {
+  pronunciationSchema,
+  pronunciationSchemaUpdate,
+} from "../../schemas/pronunciation.schema";
 
 const updatePronunciationService = async (
   data: any,
@@ -27,7 +30,7 @@ const updatePronunciationService = async (
 
   await pronunciationsRepository.save(newPronunciationData);
 
-  return pronunciationSchema.parse(newPronunciationData);
+  return pronunciationSchema.parse(pronunciationSchemaUpdate);
 };
 
 export { updatePronunciationService };

@@ -3,7 +3,11 @@ import { AppDataSource } from "../../data-source";
 import AppError from "../../errors/AppErrors";
 import { TListeningResponse } from "../../interfaces/listening.interface";
 import { Listening } from "../../entities/listening.entitie";
-import { listeningSchema } from "../../schemas/listening.schema";
+import {
+  listeningSchema,
+  listeningSchemaUpdate,
+} from "../../schemas/listening.schema";
+import { pronunciationSchemaUpdate } from "schemas/pronunciation.schema";
 
 const updateListeningService = async (
   data: any,
@@ -20,13 +24,13 @@ const updateListeningService = async (
   }
 
   const newListeningData = listeningsRepository.create({
-    ...(oldListening || {}),
+    ...oldListening,
     ...data,
   });
 
   await listeningsRepository.save(newListeningData);
 
-  return listeningSchema.parse(newListeningData);
+  return listeningSchema.parse(listeningSchemaUpdate);
 };
 
 export { updateListeningService };
