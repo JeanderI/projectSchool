@@ -1,36 +1,49 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import AppError from "../../errors/AppErrors";
-import { TListeningResponse } from "../../interfaces/listening.interface";
-import { Listening } from "../../entities/listening.entitie";
 import {
-  listeningSchema,
-  listeningSchemaUpdate,
-} from "../../schemas/listening.schema";
-import { pronunciationSchemaUpdate } from "schemas/pronunciation.schema";
+  TListeningResponse,
+  TListeningUpdateRequest,
+} from "../../interfaces/listening.interface";
+import { Listening } from "../../entities/listening.entitie";
+import { listeningSchema } from "../../schemas/listening.schema";
 
 const updateListeningService = async (
-  data: any,
+  data: TListeningUpdateRequest,
   listeningId: string
 ): Promise<TListeningResponse> => {
   const listeningsRepository: Repository<Listening> =
     AppDataSource.getRepository(Listening);
-  const oldListening: Listening | null = await listeningsRepository.findOneBy({
-    id: listeningId,
+  const oldListening: Listening | null = await listeningsRepository.findOne({
+    where: { id: listeningId },
   });
 
-  if (!oldListening || oldListening.id !== listeningId) {
+  if (!oldListening) {
     throw new AppError("Listening not found", 404);
   }
 
-  const newListeningData = listeningsRepository.create({
-    ...oldListening,
-    ...data,
-  });
+  if (data.title) {
+    oldListening.title = data.title;
+  }
+  if (data.description) {
+    oldListening.description = data.description;
+  }
+  if (data.start !== undefined) {
+    oldListening.start = data.start;
+  }
+  if (data.text) {
+    oldListening.text = data.text;
+  }
+  if (data.help !== undefined) {
+    oldListening.help = data.help;
+  }
+  if (data.url) {
+    oldListening.url = data.url;
+  }
 
-  await listeningsRepository.save(newListeningData);
+  await listeningsRepository.save(oldListening);
 
-  return listeningSchema.parse(listeningSchemaUpdate);
+  return listeningSchema.parse(oldListening);
 };
 
 export { updateListeningService };
