@@ -31,6 +31,10 @@ const updateListeningService = async (
   if (data.start !== undefined) {
     oldListening.start = data.start;
   }
+
+  if (data.end !== undefined) {
+    oldListening.end = data.end;
+  }
   if (data.text) {
     oldListening.text = data.text;
   }
