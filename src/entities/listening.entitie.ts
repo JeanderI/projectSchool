@@ -15,6 +15,9 @@ export class Listening {
   @Column({ nullable: true, type: "varchar" })
   start: string | null;
 
+  @Column({ nullable: true, type: "varchar" })
+  end: string | null;
+
   @Column()
   text: string;
 

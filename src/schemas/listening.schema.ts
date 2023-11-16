@@ -5,6 +5,7 @@ const listeningSchema = z.object({
   title: z.string(),
   description: z.string(),
   start: z.string().nullable(),
+  end: z.string().nullable(),
   text: z.string(),
   help: z.string().nullable(),
   url: z.string(),
