@@ -31,7 +31,6 @@ const updateListeningService = async (
   if (data.start !== undefined) {
     oldListening.start = data.start;
   }
-
   if (data.end !== undefined) {
     oldListening.end = data.end;
   }
@@ -43,6 +42,12 @@ const updateListeningService = async (
   }
   if (data.url) {
     oldListening.url = data.url;
+  }
+  if (data.nextUrl) {
+    oldListening.nextUrl = data.nextUrl;
+  }
+  if (data.lastUrl) {
+    oldListening.lastUrl = data.lastUrl;
   }
 
   await listeningsRepository.save(oldListening);

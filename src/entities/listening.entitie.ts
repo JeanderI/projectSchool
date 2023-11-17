@@ -27,6 +27,12 @@ export class Listening {
   @Column()
   url: string;
 
+  @Column({ nullable: true, type: "varchar" })
+  nextUrl: string | null;
+
+  @Column({ nullable: true, type: "varchar" })
+  lastUrl: string | null;
+
   @ManyToOne(() => User, (user) => user.listening, { onDelete: "CASCADE" })
   user: User;
 }

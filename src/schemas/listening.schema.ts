@@ -9,6 +9,8 @@ const listeningSchema = z.object({
   text: z.string(),
   help: z.string().nullable(),
   url: z.string(),
+  nextUrl: z.string().nullable(),
+  lastUrl: z.string().nullable(),
 });
 
 const listeningSchemaRequest = listeningSchema.omit({
