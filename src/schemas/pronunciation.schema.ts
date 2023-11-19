@@ -4,9 +4,9 @@ const pronunciationSchema = z.object({
   id: z.string(),
   title: z.string(),
   description: z.string(),
-  start: z.string().nullable(),
+  start: z.string().nullish(),
   text: z.string(),
-  help: z.string().nullable(),
+  help: z.string().nullish(),
   url: z.string(),
 });
 
