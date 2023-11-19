@@ -24,6 +24,12 @@ export class Pronunciation {
   @Column()
   url: string;
 
+  @Column({ nullable: true, type: "varchar" })
+  nextUrl: string | null | undefined;
+
+  @Column({ nullable: true, type: "varchar" })
+  lastUrl: string | null | undefined;
+
   @ManyToOne(() => User, (user) => user.pronunciation, { onDelete: "CASCADE" })
   user: User;
 }

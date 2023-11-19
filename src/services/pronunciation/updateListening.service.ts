@@ -43,6 +43,12 @@ const updatePronunciationService = async (
   if (data.url) {
     oldPronunciation.url = data.url;
   }
+  if (data.nextUrl) {
+    oldPronunciation.nextUrl = data.nextUrl;
+  }
+  if (data.lastUrl) {
+    oldPronunciation.lastUrl = data.lastUrl;
+  }
 
   await pronunciationsRepository.save(oldPronunciation);
 

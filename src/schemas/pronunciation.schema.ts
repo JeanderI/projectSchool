@@ -8,6 +8,8 @@ const pronunciationSchema = z.object({
   text: z.string(),
   help: z.string().nullish(),
   url: z.string(),
+  nextUrl: z.string().nullish(),
+  lastUrl: z.string().nullish(),
 });
 
 const pronunciationSchemaRequest = pronunciationSchema.omit({
