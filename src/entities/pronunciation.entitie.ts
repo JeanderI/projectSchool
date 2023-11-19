@@ -13,13 +13,13 @@ export class Pronunciation {
   description: string;
 
   @Column({ nullable: true, type: "varchar" })
-  start: string | null;
+  start: string | null | undefined;
 
   @Column()
   text: string;
 
   @Column({ nullable: true, type: "varchar" })
-  help: string | null;
+  help: string | null | undefined;
 
   @Column()
   url: string;

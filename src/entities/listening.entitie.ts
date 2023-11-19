@@ -13,25 +13,25 @@ export class Listening {
   description: string;
 
   @Column({ nullable: true, type: "varchar" })
-  start: string | null;
+  start: string | null | undefined;
 
   @Column({ nullable: true, type: "varchar" })
-  end: string | null;
+  end: string | null | undefined;
 
   @Column()
   text: string;
 
   @Column({ nullable: true, type: "varchar" })
-  help: string | null;
+  help: string | null | undefined;
 
   @Column()
   url: string;
 
   @Column({ nullable: true, type: "varchar" })
-  nextUrl: string | null;
+  nextUrl: string | null | undefined;
 
   @Column({ nullable: true, type: "varchar" })
-  lastUrl: string | null;
+  lastUrl: string | null | undefined;
 
   @ManyToOne(() => User, (user) => user.listening, { onDelete: "CASCADE" })
   user: User;
